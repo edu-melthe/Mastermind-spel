@@ -17,9 +17,10 @@ while True:
 kod = []
 if svårighet == 1:
     while len(kod) < 4:
-        if rand.randint(1, 6) not in kod:
-            kod.append(rand.randint(1, 6))
-else:
+        siffra = rand.randint(1,6)
+        if siffra not in kod:
+            kod.append(siffra)
+elif svårighet == 2:
     for i in range(4):
         kod.append(rand.randint(1, 6))
 
