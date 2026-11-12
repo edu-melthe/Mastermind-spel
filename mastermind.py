@@ -26,3 +26,4 @@ else:
 
 print(kod)
 
+print("Drag #", " "*4, "Drag", " "*7, "Feedback\n", "-"*32)
