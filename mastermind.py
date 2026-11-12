@@ -26,15 +26,22 @@ elif svårighet == 2:
         kod.append(rand.randint(1, 6))
 
 
-respons = []
 while True:
-    gissning = str(input("Ange gissning som följd av fyra siffror --> "))
+    respons = []
+    gissning = input("Ange gissning som följd av fyra siffror --> ")
+    
     for i in range(4):
-        if gissning[i] == kod[i]:
+        if int(gissning[i]) == kod[i]:
             respons.append("x")
-        elif gissning[i] in kod:
+        
+        elif int(gissning[i]) in kod:
             respons.append("y")
+    
     print(respons)
+    
+    if respons == ["y", "y", "y", "y"]:
+        print("Du vann")
+        break
     
 
 print("Drag #", " "*4, "Drag", " "*7, "Feedback\n", "-"*32)
