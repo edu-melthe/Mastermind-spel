@@ -14,6 +14,7 @@ while True:
         print("Ogiltigt val, Försök igen!")
         continue
     
+    
 kod = []
 if svårighet == 1:
     while len(kod) < 4:
@@ -25,5 +26,14 @@ elif svårighet == 2:
         kod.append(rand.randint(1, 6))
 
 
-print(kod)
+respons = []
+while True:
+    gissning = str(input("Ange gissning som följd av fyra siffror --> "))
+    for i in range(4):
+        if gissning[i] == kod[i]:
+            respons.append("x")
+        elif gissning[i] in kod:
+            respons.append("y")
+    print(respons)
+    
 
