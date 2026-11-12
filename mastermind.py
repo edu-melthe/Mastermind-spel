@@ -33,7 +33,7 @@ elif svårighet == 2:
 #Själva spelet
 alla_gissningar = []
 alla_responser = []
-while True:
+while len(alla_gissningar) < 12:
     respons = []
     gissning = input("Ange gissning som följd av fyra siffror --> ")
     print(f"\nDrag #", " "*4, "Drag", " "*7, "Feedback\n", "-"*32)
