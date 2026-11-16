@@ -37,6 +37,11 @@ while len(alla_gissningar) < 12:
     respons = []
     gissning = input("Ange gissning som följd av fyra siffror --> ")
     
+    #Inmatningskontroll
+    if len(gissning) != 4 or not gissning.isdigit():
+        print("Ogiltig gissning!, Försök igen.")
+        continue
+    
     # Jämför din gissning mit koden
     for i in range(4):
         if int(gissning[i]) == kod[i]:
