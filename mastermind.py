@@ -42,12 +42,23 @@ while len(alla_gissningar) < 12:
         print("Ogiltig gissning!, Försök igen.")
         continue
     
-    # Jämför din gissning mit koden
+    #
+    kod_kvar = list(kod)
+    gissning_kvar = [int(s) for s in gissning]
+    
+    # Hitta y
     for i in range(4):
-        if int(gissning[i]) == kod[i]:
+        if gissning_kvar[i] == kod_kvar[i]:
             respons.append("y")
-        elif int(gissning[i]) in kod:
+            kod_kvar[i] = None
+            gissning_kvar[i] = -1 
+
+    # Hitta x
+    for i in range(4):
+        if gissning_kvar[i] != -1 and gissning_kvar[i] in kod_kvar:
             respons.append("x")
+            index = kod_kvar.index(gissning_kvar[i])
+            kod_kvar[index] = None
     
     # Lägger till mellanslag mellan siffrorna och svaren med vanliga loopar
     gissning_text = ""
@@ -78,5 +89,5 @@ while len(alla_gissningar) < 12:
         print("Du vann")
         vann_spelet = True
         break
-if not vann_spelet:
-    print(f"Game Over!, Du har slut på gissningar. Den rätta koden var {kod}")
+if respons !=["y", "y", "y", "y"]:
+    print(f"Game Over!, Du har slut på gissningar. Den rätta koden var {"".join(str(siffra) for siffra in kod)}")
