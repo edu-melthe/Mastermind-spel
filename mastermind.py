@@ -1,11 +1,11 @@
 import random as rand
 
-#Skriver reglerna
+# Skriver reglerna
 print(f"Datorn kommer att slumpa en kod på fyra siffror mellan 1 och 6.\nDu ska försöka gissa denna kods siffror på max 12 drag.")
 print(f"Efter respektive gissning så kommer du få en respons:\nFör varje korrekt siffra på korrekt plats:y \nFör varje korrekt gissning på fel plats:x \nFör de siffror som inte finns med i koden ges ingen markering")
 
 
-#Låter dig välja svårighetsgrad
+# Låter dig välja svårighetsgrad
 while True:
     try:
         svårighet = int(input("Ange önskad nivå: Lättare (1), Svårare (2) ->"))
@@ -18,7 +18,7 @@ while True:
         continue
 
 
-#Slumpar en kod baserat på svårighetsgraden
+# Slumpar en kod baserat på svårighetsgraden
 kod = []
 if svårighet == 1:
     while len(kod) < 4:
@@ -30,15 +30,14 @@ elif svårighet == 2:
         kod.append(rand.randint(1, 6))
 
 
-#Själva spelet
+# Själva spelet
 alla_gissningar = []
 alla_responser = []
 while len(alla_gissningar) < 12:
     respons = []
     gissning = input("Ange gissning som följd av fyra siffror --> ")
-    print(f"\nDrag #", " "*4, "Drag", " "*7, "Feedback\n", "-"*32)
     
-    #Jämför din gissning mit koden
+    # Jämför din gissning mit koden
     for i in range(4):
         if int(gissning[i]) == kod[i]:
             respons.append("y")
@@ -56,7 +55,7 @@ while len(alla_gissningar) < 12:
     alla_responser.append(respons_text)
     
     # Skriver ut spelplanen rad för rad (12 ner till 1)
-    print("Drag #", " "*3, "Drag", " "*7, "Feedback")
+    print(f"\nDrag #", " "*3, "Drag", " "*7, "Feedback")
     print("-" * 34)
     for rad in range(12, 0, -1):
         print()
@@ -69,7 +68,7 @@ while len(alla_gissningar) < 12:
         else:
             print(rad_text)
     
-    #Slutar spelet om du har alla rätt
+    #¨Slutar spelet om du har alla rätt
     if respons == ["y", "y", "y", "y"]:
         print("Du vann")
         break
