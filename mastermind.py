@@ -86,7 +86,7 @@ while len(alla_gissningar) < 12:
     
     #¨Slutar spelet om du har alla rätt
     if respons == ["y", "y", "y", "y"]:
-        print("Du vann")
+        print(f"Grattis!, Du fick rätt på {len(alla_gissningar)} gissningar.")
         vann_spelet = True
         break
 if respons !=["y", "y", "y", "y"]:
