@@ -3,7 +3,7 @@ import random as rand
 # Skriver reglerna
 print(f"Datorn kommer att slumpa en kod på fyra siffror mellan 1 och 6.\nDu ska försöka gissa denna kods siffror på max 12 drag.")
 print(f"Efter respektive gissning så kommer du få en respons:\nFör varje korrekt siffra på korrekt plats:✔ \nFör varje korrekt gissning på fel plats:⬛ \nFör de siffror som inte finns med i koden ges ingen markering")
-
+print(f"\nDu får välja mellan två svårighetsnivåer:\nLättare nivå: Alla siffror är garanterat olika\nSvårare nivå: Det kan finnas upprepningar av en eller flera siffror.")
 
 # Låter dig välja svårighetsgrad
 while True:
@@ -42,11 +42,9 @@ while len(alla_gissningar) < 12:
         print("Ogiltig gissning!, Försök igen.")
         continue
     
-    #
+    # Hitta y
     kod_kvar = list(kod)
     gissning_kvar = [int(s) for s in gissning]
-    
-    # Hitta y
     for i in range(4):
         if gissning_kvar[i] == kod_kvar[i]:
             respons.append("✔")
@@ -84,7 +82,7 @@ while len(alla_gissningar) < 12:
         else:
             print(rad_text)
     
-    #¨Slutar spelet om du har alla rätt
+    # Slutar spelet om du har alla rätt
     if respons == ["✔", "✔", "✔", "✔"]:
         print(f"Grattis!, Du fick rätt på {len(alla_gissningar)} gissningar.")
         vann_spelet = True
