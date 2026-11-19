@@ -5,87 +5,101 @@ print(f"Datorn kommer att slumpa en kod på fyra siffror mellan 1 och 6.\nDu ska
 print(f"Efter respektive gissning så kommer du få en respons:\nFör varje korrekt siffra på korrekt plats:✔ \nFör varje korrekt gissning på fel plats:⬛ \nFör de siffror som inte finns med i koden ges ingen markering")
 print(f"\nDu får välja mellan två svårighetsnivåer:\nLättare nivå: Alla siffror är garanterat olika\nSvårare nivå: Det kan finnas upprepningar av en eller flera siffror.")
 
-# Låter dig välja svårighetsgrad
-while True:
-    try:
-        svårighet = int(input("Ange önskad nivå: Lättare (1), Svårare (2) ->"))
-        if svårighet in [1, 2]:
-            break
-        else:
-            print("Ogiltigt val, Försök igen!")
-    except ValueError:
-        print("Ogiltigt val, Försök igen!")
-        continue
-
-
-# Slumpar en kod baserat på svårighetsgraden
-kod = []
-if svårighet == 1:
-    while len(kod) < 4:
-        siffra = rand.randint(1,6)
-        if siffra not in kod:
-            kod.append(siffra)
-elif svårighet == 2:
-    for i in range(4):
-        kod.append(rand.randint(1, 6))
-
 
 # Själva spelet
-alla_gissningar = []
-alla_responser = []
-while len(alla_gissningar) < 12:
-    respons = []
-    gissning = input("Ange gissning som följd av fyra siffror --> ")
+while True:
+    # Låter dig välja svårighetsgrad
+    while True:
+        try:
+            svårighet = int(input("Ange önskad nivå: Lättare (1), Svårare (2) ->"))
+            if svårighet in [1, 2]:
+                break
+            else:
+                print("Ogiltigt val, Försök igen!")
+        except ValueError:
+            print("Ogiltigt val, Försök igen!")
+            continue
     
-    #Inmatningskontroll
-    if len(gissning) != 4 or not gissning.isdigit():
-        print("Ogiltig gissning!, Försök igen.")
-        continue
+    # Slumpar en kod baserat på svårighetsgraden
+    kod = []
+    if svårighet == 1:
+         while len(kod) < 4:
+            siffra = rand.randint(1,6)
+            if siffra not in kod:
+                kod.append(siffra)
+    elif svårighet == 2:
+        for i in range(4):
+            kod.append(rand.randint(1, 6))
     
-    # Hitta y
-    kod_kvar = list(kod)
-    gissning_kvar = [int(s) for s in gissning]
-    for i in range(4):
-        if gissning_kvar[i] == kod_kvar[i]:
-            respons.append("✔")
-            kod_kvar[i] = None
-            gissning_kvar[i] = -1 
+    alla_gissningar = []
+    alla_responser = []
+    while True:
+        respons = []
+        gissning = input("Ange gissning som följd av fyra siffror --> ")
+        
+        #Inmatningskontroll
+        if len(gissning) != 4 or not gissning.isdigit():
+            print("Ogiltig gissning!, Försök igen.")
+            continue
+        
+        # Hitta y
+        kod_kvar = list(kod)
+        gissning_kvar = [int(s) for s in gissning]
+        for i in range(4):
+            if gissning_kvar[i] == kod_kvar[i]:
+                respons.append("✔")
+                kod_kvar[i] = None
+                gissning_kvar[i] = -1 
 
-    # Hitta x
-    for i in range(4):
-        if gissning_kvar[i] != -1 and gissning_kvar[i] in kod_kvar:
-            respons.append("⬛")
-            index = kod_kvar.index(gissning_kvar[i])
-            kod_kvar[index] = None
-    
-    # Lägger till mellanslag mellan siffrorna och svaren med vanliga loopar
-    gissning_text = ""
-    for siffra in gissning:
-        gissning_text = gissning_text + siffra + " "
-    respons_text = ""
-    for bokstav in respons:
-        respons_text = respons_text + bokstav + " "     
-    alla_gissningar.append(gissning_text)
-    alla_responser.append(respons_text)
-    
-    # Skriver ut spelplanen rad för rad (12 ner till 1)
-    print(f"\nDrag #", " "*3, "Drag", " "*7, "Feedback")
-    print("-" * 34)
-    for rad in range(12, 0, -1):
-        print()
-        if rad >= 10:
-            rad_text = "  " + str(rad)
-        else:
-            rad_text = "   " + str(rad)     
-        if rad <= len(alla_gissningar):
-            print(rad_text + "     " + alla_gissningar[rad - 1] + "    " + alla_responser[rad - 1])
-        else:
-            print(rad_text)
-    
-    # Slutar spelet om du har alla rätt
-    if respons == ["✔", "✔", "✔", "✔"]:
-        print(f"Grattis!, Du fick rätt på {len(alla_gissningar)} gissningar.")
-        vann_spelet = True
+        # Hitta x
+        for i in range(4):
+            if gissning_kvar[i] != -1 and gissning_kvar[i] in kod_kvar:
+                respons.append("⬛")
+                index = kod_kvar.index(gissning_kvar[i])
+                kod_kvar[index] = None
+        
+        # Lägger till mellanslag mellan siffrorna och svaren med vanliga loopar
+        gissning_text = ""
+        for siffra in gissning:
+            gissning_text = gissning_text + siffra + " "
+        respons_text = ""
+        for bokstav in respons:
+            respons_text = respons_text + bokstav + " "     
+        alla_gissningar.append(gissning_text)
+        alla_responser.append(respons_text)
+        
+        # Skriver ut spelplanen rad för rad (12 ner till 1)
+        print(f"\nDrag #", " "*3, "Drag", " "*7, "Feedback")
+        print("-" * 34)
+        for rad in range(12, 0, -1):
+            print()
+            if rad >= 10:
+                rad_text = "  " + str(rad)
+            else:
+                rad_text = "   " + str(rad)     
+            if rad <= len(alla_gissningar):
+                print(rad_text + "     " + alla_gissningar[rad - 1] + "    " + alla_responser[rad - 1])
+            else:
+                print(rad_text)
+        
+        # Slutar spelet om du har alla rätt
+        if respons == ["✔", "✔", "✔", "✔"]:
+            print(f"Grattis!, Du fick rätt på {len(alla_gissningar)} gissningar.")
+            vann_spelet = True
+            break
+        # Slutar spelet om försöken är slut
+        if len(alla_gissningar) == 12:
+            print(f"Game Over!, Du har slut på gissningar. Den rätta koden var {"".join(str(siffra) for siffra in kod)}")
+            break
+        
+    # Låter dig köra igen
+    while True:
+        igen = input("Vill du köra igen --> ")
+        if not(igen=="j" or igen=="n"):
+            print("Ogiltig inmatning")
+            continue
         break
-if respons !=["✔", "✔", "✔", "✔"]:
-    print(f"Game Over!, Du har slut på gissningar. Den rätta koden var {"".join(str(siffra) for siffra in kod)}")
+    if igen == "j":
+        continue
+    break
+
