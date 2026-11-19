@@ -2,7 +2,7 @@ import random as rand
 
 # Skriver reglerna
 print(f"Datorn kommer att slumpa en kod på fyra siffror mellan 1 och 6.\nDu ska försöka gissa denna kods siffror på max 12 drag.")
-print(f"Efter respektive gissning så kommer du få en respons:\nFör varje korrekt siffra på korrekt plats:y \nFör varje korrekt gissning på fel plats:x \nFör de siffror som inte finns med i koden ges ingen markering")
+print(f"Efter respektive gissning så kommer du få en respons:\nFör varje korrekt siffra på korrekt plats:✔ \nFör varje korrekt gissning på fel plats:⬛ \nFör de siffror som inte finns med i koden ges ingen markering")
 
 
 # Låter dig välja svårighetsgrad
@@ -49,14 +49,14 @@ while len(alla_gissningar) < 12:
     # Hitta y
     for i in range(4):
         if gissning_kvar[i] == kod_kvar[i]:
-            respons.append("y")
+            respons.append("✔")
             kod_kvar[i] = None
             gissning_kvar[i] = -1 
 
     # Hitta x
     for i in range(4):
         if gissning_kvar[i] != -1 and gissning_kvar[i] in kod_kvar:
-            respons.append("x")
+            respons.append("⬛")
             index = kod_kvar.index(gissning_kvar[i])
             kod_kvar[index] = None
     
@@ -85,9 +85,9 @@ while len(alla_gissningar) < 12:
             print(rad_text)
     
     #¨Slutar spelet om du har alla rätt
-    if respons == ["y", "y", "y", "y"]:
+    if respons == ["✔", "✔", "✔", "✔"]:
         print(f"Grattis!, Du fick rätt på {len(alla_gissningar)} gissningar.")
         vann_spelet = True
         break
-if respons !=["y", "y", "y", "y"]:
+if respons !=["✔", "✔", "✔", "✔"]:
     print(f"Game Over!, Du har slut på gissningar. Den rätta koden var {"".join(str(siffra) for siffra in kod)}")
