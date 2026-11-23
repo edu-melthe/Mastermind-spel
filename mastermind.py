@@ -1,10 +1,17 @@
 import random as rand
 
 # Skriver reglerna
-print(f"Datorn kommer att slumpa en kod på fyra siffror mellan 1 och 6.\nDu ska försöka gissa denna kods siffror på max 12 drag.")
-print(f"Efter respektive gissning så kommer du få en respons:\nFör varje korrekt siffra på korrekt plats:✔ \nFör varje korrekt gissning på fel plats:⬛ \nFör de siffror som inte finns med i koden ges ingen markering")
-print(f"\nDu får välja mellan två svårighetsnivåer:\nLättare nivå: Alla siffror är garanterat olika\nSvårare nivå: Det kan finnas upprepningar av en eller flera siffror.")
-
+print(
+    "Datorn kommer att slumpa en kod på fyra siffror mellan 1 och 6.\n"
+    "Du ska försöka gissa denna kods siffror på max 12 drag."
+    "Efter respektive gissning så kommer du få en respons:\n"
+    "För varje korrekt siffra på korrekt plats:✔ \n"
+    "För varje korrekt gissning på fel plats:⬛ \n"
+    "För de siffror som inte finns med i koden ges ingen markering\n"
+    "Du får välja mellan två svårighetsnivåer:\n"
+    "Lättare nivå: Alla siffror är garanterat olika\n"
+    "Svårare nivå: Det kan finnas upprepningar av en eller flera siffror."
+)
 
 # Själva spelet
 while True:
