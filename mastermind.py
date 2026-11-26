@@ -3,7 +3,7 @@ import random as rand
 # Skriver reglerna
 print(
     "Datorn kommer att slumpa en kod på fyra siffror mellan 1 och 6.\n"
-    "Du ska försöka gissa denna kods siffror på max 12 drag."
+    "Du ska försöka gissa denna kods siffror på max 12 drag.\n"
     "Efter respektive gissning så kommer du få en respons:\n"
     "För varje korrekt siffra på korrekt plats:✔ \n"
     "För varje korrekt gissning på fel plats:⬛ \n"
